@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exam Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f4f9;
+        }
+
+        h1 {
+            color: #4CAF50;
+        }
+
+        .details {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Exam Details: <%= exam.examName %></h1>
+    <div class="details">
+        <p><strong>Description:</strong> <%= exam.description %></p>
+        <p><strong>Eligibility:</strong> <%= exam.eligibility %></p>
+        <p><strong>Syllabus:</strong> <%= exam.syllabus %></p>
+        <p><strong>Previous Year Questions:</strong> <%= exam.pyq %></p>
+        <p><strong>Format:</strong> <%= exam.format %></p>
+        <p><strong>Conducting Agency :</strong><%= exam.organization.orgName%></p>
+    </div>
+    <a href="/readExamList">Back to Exam List</a><p></p>
+    <a href="/exam/edit/<%= exam._id %>">Edit Exam</a><p></p>
+    <form action="/exam/delete/<%= exam._id %>" method="POST">
+        <button type="submit">Delete</button>
+    </form>
+</body>
+</html>

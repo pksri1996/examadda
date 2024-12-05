@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update Exam</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h1 {
+            color: #4CAF50;
+            text-align: center;
+        }
+        select, input[type="text"], button {
+            width: calc(100% - 20px);
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        form {
+            width: 60%;
+            margin: 0 auto;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+
+        input[type="text"],
+        textarea {
+            width: calc(100% - 20px); /* Ensure padding fits */
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+
+        input[type="text"]:focus,
+        textarea:focus {
+            border-color: #4CAF50;
+            outline: none;
+            box-shadow: 0 0 5px rgba(76, 175, 80, 0.5);
+        }
+
+        button {
+            display: block;
+            width: 100%;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 12px;
+            border-radius: 4px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <h1>Update Exam: <%= exam.name %></h1>
+    <form action="/exam/edit/<%= exam._id %>" method="POST">
+        <div>
+            <label for="examName">Name of Exam:</label>
+            <input type="text" id="examName" name="examName" value="<%= exam.examName %>" required>
+        </div>
+        <div>
+            <label for="description">Description:</label>
+            <textarea id="description" name="description" rows="4" required><%= exam.description %></textarea>
+        </div>
+        <div>
+            <label for="eligibility">Eligibility:</label>
+            <input type="text" id="eligibility" name="eligibility" value="<%= exam.eligibility %>">
+        </div>
+        <div>
+            <label for="syllabus">Syllabus:</label>
+            <textarea id="syllabus" name="syllabus" rows="10"><%= exam.syllabus %></textarea>
+        </div>
+        <div>
+            <label for="pyq">Previous Year Questions:</label>
+            <textarea id="pyq" name="pyq" rows="4"><%= exam.pyq %></textarea>
+        </div>
+        <div>
+            <label for="format">Exam Format:</label>
+            <textarea id="format" name="format" rows="10"><%= exam.format %></textarea>
+        </div>
+        <div>
+            <label for="organization">Exam Format:</label>
+            <select id="organization" name="organization" required>
+                <% organization.forEach(org => { %>
+                    <option value="<%= org._id %>" 
+                        <%= org._id.toString() === exam.organization._id.toString() ? 'selected' : '' %> >
+                        <%= org.orgName %>
+                    </option>
+                <% }); %>
+                
+            </select>
+            
+        </div>
+        <button type="submit">Update Exam</button>
+    </form>
+</body>
+</html>

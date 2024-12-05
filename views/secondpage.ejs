@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exam List</title>
+    <style>
+        .button {
+            display: inline-block;
+            padding: 10px 20px;
+            margin: 10px;
+            background-color: #4CAF50;
+            color: white;
+            font-size: 16px;
+            text-align: center;
+            text-decoration: none;
+            border-radius: 5px;
+            border: 1px solid transparent;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            padding: 20px;
+            margin: 0;
+        }
+
+        h1 {
+            color: #4CAF50;
+            text-align: center;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+    </style>
+</head>
+<body>
+    <h1>Exam List</h1>
+
+    <a href="/" class="button">Add new Exam</a>
+
+    <a href="/createOrg" class="button">Add new Organization</a>
+
+    <% if (data.length > 0) { %>
+        <table>
+            <thead>
+                <tr>
+                    <th>Exam Name</th>
+                    <th>Description</th>
+                    <th>Eligibility</th>
+                    <th>Syllabus</th>
+                    <th>Previous Year Questions</th>
+                    <th>Format</th>
+                    <th>Link</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% data.forEach(exam => { %>
+                    <tr>
+                        <td><%= exam.examName %></td>
+                        <td><%= exam.description %></td>
+                        <td><%= exam.eligibility %></td>
+                        <td><%= exam.syllabus %></td>
+                        <td><%= exam.pyq %></td>
+                        <td><%= exam.format %></td>
+                        <td>
+                            <a href="/exam/<%= exam._id %>">View Details</a>
+                        </td>
+                    </tr>
+                <% }); %>
+            </tbody>
+        </table>
+    <% } else { %>
+        <p>No exams found.</p>
+    <% } %>
+</body>
+</html>
