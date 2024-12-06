@@ -24,12 +24,13 @@
 <body>
     <h1>Exam Details: <%= exam.examName %></h1>
     <div class="details">
+        <p><strong>Conducting Agency :</strong><%= exam.organization.orgName%></p>
         <p><strong>Description:</strong> <%= exam.description %></p>
         <p><strong>Eligibility:</strong> <%= exam.eligibility %></p>
         <p><strong>Syllabus:</strong> <%= exam.syllabus %></p>
         <p><strong>Previous Year Questions:</strong> <%= exam.pyq %></p>
         <p><strong>Format:</strong> <%= exam.format %></p>
-        <p><strong>Conducting Agency :</strong><%= exam.organization.orgName%></p>
+        
     </div>
     <a href="/readExamList">Back to Exam List</a><p></p>
     <a href="/exam/edit/<%= exam._id %>">Edit Exam</a><p></p>
