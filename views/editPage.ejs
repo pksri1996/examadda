@@ -103,6 +103,14 @@
             <textarea id="format" name="format" rows="10"><%= exam.format %></textarea>
         </div>
         <div>
+            <label for="pattern">Exam Pattern:</label>
+            <textarea id="pattern" name="pattern" rows="10"><%= exam.pattern %></textarea>
+        </div>
+        <div>
+            <label for="link">Useful Link:</label>
+            <textarea id="link" name="link" rows="10"><%= exam.link %></textarea>
+        </div>
+        <div>
             <label for="organization">Exam Format:</label>
             <select id="organization" name="organization" required>
                 <% organization.forEach(org => { %>

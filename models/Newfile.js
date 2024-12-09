@@ -26,6 +26,14 @@ const examSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    pattern:{
+        type: String,
+        required: true
+    },
+    link:{
+        type: String,
+        required: true
+    },
     organization: {
         type: mongoose.Schema.Types.ObjectId, 
         ref: 'organization',

@@ -23,6 +23,8 @@ router.post('/', async(req, res) => {
     syllabus: req.body.syllabus,
     pyq: req.body.pyq,
     format: req.body.format,
+    pattern: req.body.pattern,
+    link: req.body.link,
     organization: req.body.organization
   });
   await newExam.save()
@@ -91,7 +93,9 @@ router.post('/exam/edit/:id', async (req, res) => {
             syllabus: req.body.syllabus,
             pyq: req.body.pyq,
             format: req.body.format,
-            organization:req.body.organization
+            organization:req.body.organization,
+            link: req.body.link,
+            organization: req.body.organization
         });
 
       res.redirect('/readExamList');
