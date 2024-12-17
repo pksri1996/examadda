@@ -112,7 +112,7 @@
 <body>
     <a href="/readExamList" class="button">ExamList</a>
     <h1>Enter Exam Details</h1>
-    <form action="/" method="POST">
+    <form action="/" method="POST" enctype="multipart/form-data">
         <div>
             <label for="examName">Name of Exam:</label>
             <input type="text" id="examName" name="examName" required>
@@ -130,9 +130,13 @@
             <label for="syllabus">Syllabus:</label>
             <textarea id="syllabus" name="syllabus" rows="10" required></textarea>
         </div>
-        <div>
+        <!-- <div>
             <label for="pyq">Previous Year Questions:</label>
             <textarea name="pyq" id="pyq" rows="4" required></textarea>
+        </div> -->
+        <div>
+            <label for="pyq">Previous Year Questions:</label>
+            <input type="file" name = "pyq" id = "pyq" multiple required>
         </div>
         <div>
             <label for="format">Exam Format:</label>

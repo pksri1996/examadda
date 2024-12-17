@@ -1,8 +1,15 @@
-
 const express = require('express');
+const app = express();
+const path = require('path');
 const router = express.Router();
 const Exam = require('../models/Newfile.js');
 const Organization = require('../models/Organization.js');
+const multer = require('multer');
+const upload = multer({dest: 'upload/'});
+
+
+app.use('/uploads', express.static(path.join(__dirname, '/uploads')));
+
 
 
 router.get('/', async (req, res) => {
@@ -15,25 +22,34 @@ router.get('/', async (req, res) => {
 }
 });
 
-router.post('/', async(req, res) => {
-  const newExam = new Exam({
-    examName: req.body.examName,
-    description: req.body.description,
-    eligibility: req.body.eligibility,
-    syllabus: req.body.syllabus,
-    pyq: req.body.pyq,
-    format: req.body.format,
-    pattern: req.body.pattern,
-    link: req.body.link,
-    organization: req.body.organization
-  });
-  await newExam.save()
-  .then((data)=>{
-    console.log(data);
-    res.redirect('/');
-  })
-  .catch((err)=>{
-  console.log("Error is" +err)});
+router.post('/',upload.array('pyq', 5), async(req, res) => {
+
+
+  try {
+        const files = req.files; 
+        const pyqFiles = files.map(file => ({
+            filename: file.originalname,
+            url: `/uploads/${file.filename}` 
+        }));
+
+        const newExam = new Exam({
+        examName: req.body.examName,
+        description: req.body.description,
+        eligibility: req.body.eligibility,
+        syllabus: req.body.syllabus,
+        pyq: pyqFiles,
+        format: req.body.format,
+        pattern: req.body.pattern,
+        link: req.body.link,
+        organization: req.body.organization
+        });
+        
+        await newExam.save();
+            res.redirect('/');
+    }
+     catch (err) {
+      console.log(err);
+    }
 });
 
 

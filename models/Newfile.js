@@ -18,10 +18,12 @@ const examSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    pyq:{
-        type: String,
-        required: true
-    },
+    pyq: [
+        {
+            filename: { type: String, required: true },
+            url: { type: String, required: true }
+        }
+    ],
     format:{
         type: String,
         required: true
